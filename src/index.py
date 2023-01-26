@@ -11,16 +11,19 @@ from utils.validation import *
 # print(buildApiUrl("sandbox"))
 # print(buildApiUrl("development"))
 
-print(validateOptions({
+
+class Safepay:
+    def __init__(self, config):
+        validateOptions(config)
+        self.config = config
+
+
+env1 = Safepay({
     'environment': 'sandbox',
     'apiKey': 'sec_asd12-2342s-1231s',
     'v1Secret': 'bar',
     'webhookSecret': 'foo'
-}))
+})
 
-# obj = {'environment': 'sandbox',
-#        'apiKey': 'sec_asd12-2342s-1231s',
-#        'v1Secret': 'bar',
-#        'webhookSecret': 'foo'}
 
-# print(obj['apiKey'])
+print(env1.config)
