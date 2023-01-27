@@ -7,7 +7,7 @@ env = Safepay({
     'v1Secret': 'bar',
     'webhookSecret': 'foo'
 })
-print(env.config)
+print(f'environment: {env.config}')
 
 checkoutURL = env.getCheckoutURL({'beacon': '1234',
                                   'cancelUrl': 'http://example.com/cancel',
@@ -15,8 +15,8 @@ checkoutURL = env.getCheckoutURL({'beacon': '1234',
                                   'redirectUrl': 'http://example.com/success',
                                   'source': 'custom',
                                   'webhooks': str(True)})
-print(checkoutURL)
+print(f'checkoutURL: {checkoutURL}')
 
-paymentInfo = asyncio.run(env.setPaymentDetails({'amount': 10000,
-                                                 'currency': 'PKR'}))
-print(paymentInfo)
+paymentResponse = asyncio.run(env.setPaymentDetails({'amount': 10000,
+                                                     'currency': 'PKR'}))
+print(f'paymentResponse: {paymentResponse}')
