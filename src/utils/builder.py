@@ -13,7 +13,7 @@ def buildCheckoutUrl(env):
 
 
 def buildApiUrl(env):
-    print("Building checkout url")
+    print("Building api url")
 
     if env == Environment.Development.value:
         return API_URL_DEVELOPMENT

@@ -24,6 +24,7 @@ class Payments:
 
         print(json.dumps(data))
 
+        # headers are not required
         response = requests.post(url=f"{baseUrl}{url}", json=data, headers={
                                  'Content-type': 'application/json', 'Accept': 'text/plain'})
 
