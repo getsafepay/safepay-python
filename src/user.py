@@ -9,8 +9,14 @@ env = Safepay({
 })
 print(env.config)
 
-checkoutURL = env.getCheckoutURL()
+checkoutURL = env.getCheckoutURL({'beacon': '1234',
+                                  'cancelUrl': 'http://example.com/cancel',
+                                  'orderId': 'T800',
+                                  'redirectUrl': 'http://example.com/success',
+                                  'source': 'custom',
+                                  'webhooks': str(True)})
 print(checkoutURL)
 
-paymentDetails = asyncio.run(env.setPaymentDetails())
-print(paymentDetails)
+paymentInfo = asyncio.run(env.setPaymentDetails({'amount': 10000,
+                                                 'currency': 'PKR'}))
+print(paymentInfo)

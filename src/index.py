@@ -9,19 +9,13 @@ class Safepay:
         validateOptions(config)
         self.config = config
 
-    def getCheckoutURL(self):
+    def getCheckoutURL(self, checkoutDetails):
         checkout = Checkout(self.config)
-        return checkout.createCheckout({'beacon': '1234',
-                                        'cancelUrl': 'http://example.com/cancel',
-                                        'orderId': 'T800',
-                                        'redirectUrl': 'http://example.com/success',
-                                        'source': 'custom',
-                                        'webhooks': str(True)})
+        return checkout.createCheckout(checkoutDetails)
 
-    async def setPaymentDetails(self):
+    async def setPaymentDetails(self, paymentDetails):
         payment = Payments(self.config)
-        return await payment.createPayment({'amount': 10000,
-                                            'currency': 'PKR'})
+        return await payment.createPayment(paymentDetails)
 
         # env1 = Safepay({
         #     'environment': 'sandbox',

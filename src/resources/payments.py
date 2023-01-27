@@ -14,15 +14,15 @@ class Payments:
         baseUrl = buildApiUrl(self.config['environment'])
         url = '/order/v1/init'
         data = {
-            "amount": paymentDetails["amount"],
-            "client": self.config["apiKey"],
-            "currency": paymentDetails["currency"],
-            "environment": self.config["environment"]
+            'amount': paymentDetails['amount'],
+            'client': self.config['apiKey'],
+            'currency': paymentDetails['currency'],
+            'environment': self.config['environment']
         }
-        print(f"{baseUrl}{url}")
-        print(data)
+        # print(f"{baseUrl}{url}")
+        # print(data)
 
-        print(json.dumps(data))
+        # print(json.dumps(data))
 
         # headers are not required
         response = requests.post(url=f"{baseUrl}{url}", json=data, headers={
