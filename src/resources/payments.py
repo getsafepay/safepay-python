@@ -27,4 +27,4 @@ class Payments:
         response = requests.post(url=f"{baseUrl}{url}", json=data, headers={
                                  'Content-type': 'application/json', 'Accept': 'text/plain'})
 
-        return response
+        return response.json()
