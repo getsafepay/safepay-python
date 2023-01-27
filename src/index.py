@@ -29,12 +29,22 @@ env1 = Safepay({
 
 print(env1.config)
 
-checkout1 = Checkout.createCheckout({'beacon': '1234',
-                                     'cancelUrl': 'http://example.com/cancel',
-                                     'orderId': 'T800',
-                                     'redirectUrl': 'http://example.com/success',
-                                     'source': 'custom',
-                                     'webhooks': str(True)}, env1.config)
+# checkout1 = Checkout.createCheckout({'beacon': '1234',
+#                                      'cancelUrl': 'http://example.com/cancel',
+#                                      'orderId': 'T800',
+#                                      'redirectUrl': 'http://example.com/success',
+#                                      'source': 'custom',
+#                                      'webhooks': str(True)}, env1.config)
 
 
-print(checkout1)
+# print(checkout1)
+
+checkout1 = Checkout({'beacon': '1234',
+                      'cancelUrl': 'http://example.com/cancel',
+                      'orderId': 'T800',
+                      'redirectUrl': 'http://example.com/success',
+                      'source': 'custom',
+                      'webhooks': str(True)}, env1.config)
+
+
+print(checkout1.createCheckout())

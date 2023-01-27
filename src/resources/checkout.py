@@ -5,19 +5,20 @@ from urllib.parse import parse_qs
 
 
 class Checkout:
-    # def __init__(self, config):
-    #     self.config = config
+    def __init__(self, checkoutDetails, config):
+        self.checkoutDetails = checkoutDetails
+        self.config = config
 
-    def createCheckout(checkoutDetails, config):
+    def createCheckout(self):
         # checkoutDetails["environment"] = config["environment"]
-        url = buildCheckoutUrl(config["environment"])
-        params = urllib.parse.urlencode({'beacon': checkoutDetails['beacon'],
-                                         'cancel_url': checkoutDetails['cancelUrl'],
-                                         'env': config["environment"],
-                                         'order_id': checkoutDetails['orderId'],
-                                         'redirect_url': checkoutDetails['redirectUrl'],
+        url = buildCheckoutUrl(self.config["environment"])
+        params = urllib.parse.urlencode({'beacon': self.checkoutDetails['beacon'],
+                                         'cancel_url': self.checkoutDetails['cancelUrl'],
+                                         'env': self.config["environment"],
+                                         'order_id': self.checkoutDetails['orderId'],
+                                         'redirect_url': self.checkoutDetails['redirectUrl'],
                                          'source': 'custom',
-                                         'webhooks': str(checkoutDetails['webhooks'])})
+                                         'webhooks': str(self.checkoutDetails['webhooks'])})
         url += f'?{params}'
         # parsed_url = urlparse(url)
         # captured_value = parse_qs(parsed_url.query)['redirect_url'][0]
