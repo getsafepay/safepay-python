@@ -6,7 +6,6 @@ from urllib.parse import parse_qs
 
 class Checkout:
     def __init__(self, config):
-        # self.checkoutDetails = checkoutDetails
         self.config = config
 
     def createCheckout(self, checkoutDetails):

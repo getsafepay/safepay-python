@@ -2,8 +2,6 @@ from utils.builder import *
 from urllib.parse import urlparse
 from urllib.parse import parse_qs
 import requests
-import json
-# from pip._vendor import requests
 
 
 class Payments:
@@ -19,11 +17,6 @@ class Payments:
             'currency': paymentDetails['currency'],
             'environment': self.config['environment']
         }
-        # print(f"{baseUrl}{url}")
-        # print(data)
-
-        # print(json.dumps(data))
-
         # headers are not required
         response = requests.post(url=f"{baseUrl}{url}", json=data, headers={
                                  'Content-type': 'application/json', 'Accept': 'text/plain'})
