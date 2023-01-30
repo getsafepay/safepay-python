@@ -1,5 +1,4 @@
-from Crypto.Hash import SHA256
-from Crypto.Hash import SHA512
+from Crypto.Hash import SHA256, SHA512
 import json
 
 
@@ -7,10 +6,10 @@ class Verify:
     def __init__(self, config):
         self.config = config
 
-    def signature(self, request):
-        sig = request.body['sig']
-        tracker = request.body['tracker']
-        hash = SHA256.new(self.config.v1Secret)
+    def signature(self, body):
+        sig = body['sig']
+        tracker = body['tracker']
+        hash = SHA256.new(self.config['v1Secret'])
         hash.update(tracker)
         hash.digest('hex')
 
