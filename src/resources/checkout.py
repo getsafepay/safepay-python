@@ -8,16 +8,17 @@ class Checkout:
     def __init__(self, config):
         self.config = config
 
-    def createCheckout(self, checkoutDetails):
-        url = buildCheckoutUrl(self.config["environment"])
-        params = urllib.parse.urlencode({'beacon': checkoutDetails['beacon'],
-                                         'cancel_url': checkoutDetails['cancelUrl'],
+    def create_checkout(self, checkout_details):
+        url = build_checkout_url(self.config["environment"])
+        params = urllib.parse.urlencode({'beacon': checkout_details['beacon'],
+                                         'cancel_url': checkout_details['cancelUrl'],
                                          'env': self.config["environment"],
-                                         'order_id': checkoutDetails['orderId'],
-                                         'redirect_url': checkoutDetails['redirectUrl'],
+                                         'order_id': checkout_details['orderId'],
+                                         'redirect_url': checkout_details['redirectUrl'],
                                          'source': 'custom',
-                                         'webhooks': str(checkoutDetails['webhooks'])})
+                                         'webhooks': str(checkout_details['webhooks'])})
         url += f'?{params}'
+
         # parsed_url = urlparse(url)
         # captured_value = parse_qs(parsed_url.query)['redirect_url'][0]
 

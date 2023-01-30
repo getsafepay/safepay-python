@@ -1,7 +1,7 @@
 from utils.constants import *
 
 
-def buildCheckoutUrl(env):
+def build_checkout_url(env):
     if env == Environment.Development.value:
         return CHECKOUT_DEVELOPMENT
     elif env == Environment.Sandbox.value:
@@ -10,7 +10,7 @@ def buildCheckoutUrl(env):
         return CHECKOUT_PRODUCTION
 
 
-def buildApiUrl(env):
+def build_api_url(env):
     if env == Environment.Development.value:
         return API_URL_DEVELOPMENT
     elif env == Environment.Sandbox.value:
