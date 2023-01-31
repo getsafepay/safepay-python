@@ -22,6 +22,6 @@ class Safepay:
         verify = Verify(self.config)
         return verify.signature(signature_body)
 
-    def is_webhook_valid(self, webhook_body):
+    def is_webhook_valid(self, webhook_header, webhook_body):
         verify = Verify(self.config)
-        return verify.webhook(webhook_body)
+        return verify.webhook(webhook_header, webhook_body)
