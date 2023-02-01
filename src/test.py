@@ -4,6 +4,11 @@ import requests
 
 # Object creation test
 
+# ENVIRONMENT = 'sandbox'
+# TEST_API_KEY = ""
+# TEST_V1_SECRET_KEY =
+# TEST_WEBHOOK_SECRET_KEY =
+
 env = Safepay({
     'environment': 'sandbox',
     'apiKey': 'sec_9286c6a3-a159-492d-9f72-dbe424517fb5',
@@ -51,42 +56,41 @@ verification_response = env.is_signature_valid({'sig': sig,
 
 print(f'signature verification response: {verification_response}')
 
-# Verification test for webhookss
+# Verification test for webhooks
 
-# wh_verification_response = env.is_webhook_valid({'x-sfpy-signature':
-#                                                  'ba4c442df5067b679f55919ebc282cb113e376d5a5e5d9c6655647d734823da75a4371759f921bce40963cb90505ed1f8c0405cb78257fd605d259d452a1a7c7'
-#                                                  },
-#                                                 {'data': {'client_id': 'sec_9286c6a3-a159-492d-9f72-dbe424517fb5',
-#                                                           'created_at': '2021-09-29T12:00:40Z',
-#                                                           'endpoint': 'http://127.0.0.1:9000',
-#                                                           'notification': {
-#                                                               'amount': '150',
-#                                                               'currency': 'PKR',
-#                                                               'fee': '4.92',
-#                                                               'intent': 'PAYFAST',
-#                                                               'metadata': {
-#                                                                   'order_id': 'XG102312',
-#                                                                   'source': 'shopify'
-#                                                               },
-#                                                               'net': '145.08',
-#                                                               'state': 'PAID',
-#                                                               'tracker': 'tracker_c5a5apsbcv41om3fg0u0',
-#                                                               'user': 'johndoe@gmail.com'
-#                                                           },
-#                                                           'token': 'C5A5APSBCV41R2QF2MHG',
-#                                                           'type': 'payment:created',
-#                                                           'updated_at': '2021-09-29T12:00:40Z'}})
+wh_verification_response = env.is_webhook_valid({'x-sfpy-signature': '910870282c2b040626293b8d7d2b3046cd14fc00225febf42efc05cf160eb391aca739470e368a0670dfab3877f4e7eda0da2ac760ca50017ac1b2ef971ada31'
+                                                 },
+                                                {'data': {'client_id': 'sec_9286c6a3-a159-492d-9f72-dbe424517fb5',
+                                                          'created_at': '2021-09-29T12:00:40Z',
+                                                          'endpoint': 'http://127.0.0.1:9000',
+                                                          'notification': {
+                                                              'amount': '150',
+                                                              'currency': 'PKR',
+                                                              'fee': '4.92',
+                                                              'intent': 'PAYFAST',
+                                                              'metadata': {
+                                                                  'order_id': 'XG102312',
+                                                                  'source': 'shopify'
+                                                              },
+                                                              'net': '145.08',
+                                                              'state': 'PAID',
+                                                              'tracker': 'tracker_c5a5apsbcv41om3fg0u0',
+                                                              'user': 'johndoe@gmail.com'
+                                                          },
+                                                          'token': 'C5A5APSBCV41R2QF2MHG',
+                                                          'type': 'payment:created',
+                                                          'updated_at': '2021-09-29T12:00:40Z'}})
 
-# print(f'webhook verification response: {wh_verification_response}')
+print(f'webhook verification response: {wh_verification_response}')
 
 
 # testing our python server
 
-resp = requests.get(url="http://127.0.0.1:8000/my-first-api?name=Fatima")
-print(resp.text)
+# resp = requests.get(url="http://127.0.0.1:8000/my-first-api?name=Fatima")
+# print(resp.text)
 
-webhook = requests.post(url="http://127.0.0.1:8000/webhook",
-                        json={'name': 'fatima', 'age': 23}
-                        )
+# webhook = requests.post(url="http://127.0.0.1:8000/webhook",
+#                         json={'name': 'fatima', 'age': 23}
+#                         )
 
-print(webhook.json())
+# print(webhook.json())

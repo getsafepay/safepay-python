@@ -25,3 +25,22 @@ class Checkout:
         # print(captured_value)
 
         return url
+
+
+# const transaction = {
+#     token: "trans_123123234",
+#     reference: 524523,
+#     tracker: "track_1232342",
+#     amount: 4000,
+#     currency: "PKR",
+#     fees: 100,
+#     net: 3900,
+#     sig: "123123123lk123"
+# }
+
+# const { sig, tracker } = transaction
+# const safepay = new Safepay({
+#     v1Secret: "123123jkh12lk3jh1jk23"
+# })
+
+# const isValid = safepay.verify.signature(tracker, sig)
