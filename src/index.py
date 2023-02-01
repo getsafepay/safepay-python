@@ -12,6 +12,7 @@ class Safepay:
 
     def get_checkout_url(self, checkout_details):
         checkout = Checkout(self.config)
+        validate_checkout_parameters(checkout_details)
         return checkout.create_checkout(checkout_details)
 
     async def set_payment_details(self, payment_details):

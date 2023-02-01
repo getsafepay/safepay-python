@@ -33,3 +33,25 @@ def validate_environment(env):
         return True
     else:
         return False
+
+
+def validate_checkout_parameters(params):
+    print(f'params: {params}')
+
+    try:
+        params['beacon']
+    except:
+        raise Exception(f"Token is missing")
+
+    try:
+        params['cancelUrl']
+    except:
+        raise Exception(f"Cancel url is missing")
+
+    try:
+        params['redirectUrl']
+    except:
+        raise Exception(
+            f"Redirect url is missing")
+
+    return True
