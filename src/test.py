@@ -84,3 +84,9 @@ print(f'signature verification response: {verification_response}')
 
 resp = requests.get(url="http://127.0.0.1:8000/my-first-api?name=Fatima")
 print(resp.text)
+
+webhook = requests.post(url="http://127.0.0.1:8000/webhook",
+                        json={'name': 'fatima', 'age': 23}
+                        )
+
+print(webhook.json())

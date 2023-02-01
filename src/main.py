@@ -1,11 +1,14 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import uvicorn
+import json
+
 app = FastAPI()
 
 
 class Token(BaseModel):
-    token: dict
+    name: str
+    age: int
 
 
 @app.get("/my-first-api")
@@ -22,6 +25,9 @@ def hello(name=None):
 
 @app.post("/webhook")
 def get_token(token: Token):
+
+    # token = json.loads(token)
+    # print(token)
     if token is None:
         token = "None"
 
