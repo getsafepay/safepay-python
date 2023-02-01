@@ -7,8 +7,8 @@ app = FastAPI()
 
 
 class Token(BaseModel):
-    name: str
-    age: int
+    sig: dict
+    data: dict
 
 
 @app.get("/my-first-api")
