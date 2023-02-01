@@ -1,5 +1,6 @@
 from index import *
 import asyncio
+import requests
 
 # Object creation test
 
@@ -37,13 +38,15 @@ print(f'checkoutURL: {checkout_url}')
 
 # Verification test for signatures
 
-sig = hmac.new('d928d9b1d9e487957c6658be637621bbb104d64b6b436e86714c2ff3712bd825'.encode('utf-8'),
+mac = hmac.new('d928d9b1d9e487957c6658be637621bbb104d64b6b436e86714c2ff3712bd825'.encode('utf-8'),
                msg=token.encode('utf-8'),
                digestmod=sha256)
 
-print(sig.hexdigest())
+sig = mac.hexdigest()
 
-verification_response = env.is_signature_valid({'sig': sig.hexdigest(),
+print(sig)
+
+verification_response = env.is_signature_valid({'sig': sig,
                                                 'tracker': token})
 
 print(f'signature verification response: {verification_response}')
@@ -75,3 +78,9 @@ print(f'signature verification response: {verification_response}')
 #                                                           'updated_at': '2021-09-29T12:00:40Z'}})
 
 # print(f'webhook verification response: {wh_verification_response}')
+
+
+# testing our python server
+
+resp = requests.get(url="http://127.0.0.1:8000/my-first-api?name=Fatima")
+print(resp.text)

@@ -23,15 +23,16 @@ class Verify:
         print(mac)
         mac.update(bytes(tracker, encoding='utf-8'))
         print(f'after hashing: {mac.hexdigest()}')
+        digestedMac = mac.hexdigest()
 
-        # Second hashing method hashing method
+        # Second hashing method
         # mac = hmac.new(secret.encode('utf-8'),
         #                msg=tracker.encode('utf-8'),
         #                digestmod=sha256)
 
-        # mac.hexdigest()
+        # digestedMac = mac.hexdigest()
 
-        return sig == mac.hexdigest()
+        return sig == digestedMac
 
         # comptuted_sig = mac
 
