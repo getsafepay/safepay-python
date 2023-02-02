@@ -1,3 +1,7 @@
+import sys
+sys.path.append("..")
+from src.index import *
+
 ENVIRONMENT_SANDBOX = 'sandbox'
 ENVIRONMENT_PRODUCTION = 'production'
 ENVIRONMENT_DEVELOPMENT = 'development'
@@ -27,3 +31,27 @@ TEST_WEBHOOK_DATA = {'client_id': 'sec_9286c6a3-a159-492d-9f72-dbe424517fb5',
                      'token': 'C5A5APSBCV41R2QF2MHG',
                      'type': 'payment:created',
                      'updated_at': '2021-09-29T12:00:40Z'}
+
+
+envSandbox = Safepay({
+    'environment': ENVIRONMENT_SANDBOX,
+    'apiKey': TEST_API_KEY,
+    'v1Secret': TEST_V1_SECRET_KEY,
+    'webhookSecret': TEST_WEBHOOK_SECRET_KEY
+})
+
+envDevlopment = Safepay({
+    'environment': ENVIRONMENT_DEVELOPMENT,
+    'apiKey': TEST_API_KEY,
+    'v1Secret': TEST_V1_SECRET_KEY,
+    'webhookSecret': TEST_WEBHOOK_SECRET_KEY
+})
+
+envProduction = Safepay({
+    'environment': ENVIRONMENT_PRODUCTION,
+    'apiKey': TEST_API_KEY,
+    'v1Secret': TEST_V1_SECRET_KEY,
+    'webhookSecret': TEST_WEBHOOK_SECRET_KEY
+})
+
+
