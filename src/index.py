@@ -1,8 +1,8 @@
-from utils.builder import *
-from utils.validation import *
-from resources.checkout import *
-from resources.payments import *
-from resources.verify import *
+from src.utils.builder import *
+from src.utils.validation import *
+from src.resources.checkout import *
+from src.resources.payments import *
+from src.resources.verify import *
 
 
 class Safepay:

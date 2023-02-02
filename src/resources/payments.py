@@ -1,4 +1,4 @@
-from utils.builder import *
+from src.utils.builder import *
 from urllib.parse import urlparse
 from urllib.parse import parse_qs
 import requests

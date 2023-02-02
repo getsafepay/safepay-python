@@ -1,4 +1,4 @@
-from utils.constants import *
+from src.utils.constants import *
 
 
 def build_checkout_url(env):

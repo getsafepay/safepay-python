@@ -1,7 +1,7 @@
 import json
 from hashlib import sha256, sha512
 import hmac
-from utils.secure_compare import *
+from src.utils.secure_compare import *
 
 
 class Verify:

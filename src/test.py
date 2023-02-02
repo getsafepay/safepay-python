@@ -40,14 +40,6 @@ print(f'checkoutURL: {checkout_url}')
 
 # Verification test for signatures
 
-# mac = hmac.new('d928d9b1d9e487957c6658be637621bbb104d64b6b436e86714c2ff3712bd825'.encode('utf-8'),
-#                msg=TOKEN.encode('utf-8'),
-#                digestmod=sha256)
-
-# sig = mac.hexdigest()
-
-# print(sig)
-
 verification_response = env.is_signature_valid({'sig': TEST_SIGNATURE,
                                                 'tracker': TOKEN})
 
