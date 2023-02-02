@@ -1,6 +1,8 @@
-from index import *
+
+from tests.constants import *
 import asyncio
-from utils.constants import *
+from index import *
+
 
 # Object creation test
 

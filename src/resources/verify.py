@@ -35,7 +35,7 @@ class Verify:
     def webhook(self, header, body):
         signature = (header['x-sfpy-signature'])
         print(f'signature: {signature}')
-        secret = self.config['v1Secret']
+        secret = self.config['webhookSecret']
         print(f'secret: {secret}')
         print(f"data: {body['data']}")
         payload = json.dumps(
