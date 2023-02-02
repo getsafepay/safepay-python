@@ -51,7 +51,6 @@ def validate_checkout_parameters(params):
     try:
         params['redirectUrl']
     except:
-        raise Exception(
-            f"Redirect url is missing")
+        raise Exception(f"Redirect url is missing")
 
     return True

@@ -1,13 +1,14 @@
-
+import sys
+sys.path.append("..")
 from tests.constants import *
 import asyncio
-from index import *
+from src.index import *
 
 
 # Object creation test
 
 env = Safepay({
-    'environment': ENVIRONMENT,
+    'environment': ENVIRONMENT_SANDBOX,
     'apiKey': TEST_API_KEY,
     'v1Secret': TEST_V1_SECRET_KEY,
     'webhookSecret': TEST_WEBHOOK_SECRET_KEY
