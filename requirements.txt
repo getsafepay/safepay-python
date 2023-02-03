@@ -2,3 +2,5 @@ requests==2.28.2
 urllib3==1.26.14
 fastapi==0.89.1
 uvicorn==0.20.0
+pydantic==1.10.4
+nose2==0.12.0

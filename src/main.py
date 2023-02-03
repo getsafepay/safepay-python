@@ -26,8 +26,6 @@ def hello(name=None):
 @app.post("/webhook")
 def get_token(token: Token):
 
-    # token = json.loads(token)
-    # print(token)
     if token is None:
         token = "None"
 
@@ -35,6 +33,3 @@ def get_token(token: Token):
         token = token
 
     return token
-
-# if __name__ == "__main__":
-#     uvicorn.run(app, host="127.0.0.1", port=8000)
