@@ -9,15 +9,16 @@ class Verify:
         self.config = config
 
     def signature(self, body):
-        sig = body['sig']
+        signature = body['sig']
         tracker = body['tracker']
         secret = self.config['v1Secret']
         mac = hmac.new(secret.encode('utf-8'),
                        msg=tracker.encode('utf-8'),
                        digestmod=sha256)
-        digestedMac = mac.hexdigest()
+        comptuted_sig = mac.hexdigest()
+        comparison_res = secure_compare(signature, comptuted_sig)
 
-        return sig == digestedMac
+        return comparison_res
 
     def webhook(self, header, body):
         signature = (header['x-sfpy-signature'])

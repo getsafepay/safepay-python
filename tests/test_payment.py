@@ -9,7 +9,9 @@ import asyncio
 class TestPaymentAPI(unittest.TestCase):
 
     def test_amount_missing(self):
-        asyncio.run(envSandbox.set_payment_details({'currency': 'PKR'}))
+        response = asyncio.run(envSandbox.set_payment_details({ 'amount': 1000, 'currency': 'JPY'}))
+        expected = {'data': None, 'status': {'errors': ['currency not supported'], 'message': 'fail'}}
+        self.assertEqual(response, expected)
 
     def test_currency_missing(self):
         asyncio.run(envSandbox.set_payment_details({'amount': 10000}))

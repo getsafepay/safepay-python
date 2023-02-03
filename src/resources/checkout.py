@@ -12,8 +12,8 @@ class Checkout:
                                          'env': self.config["environment"],
                                          'order_id': checkout_details['orderId'],
                                          'redirect_url': checkout_details['redirectUrl'],
-                                         'source': 'custom',
-                                         'webhooks': str(checkout_details['webhooks'])})
+                                         'source': checkout_details['source'] if 'source' in checkout_details else 'custom',
+                                         'webhooks': 'true' if ('webhooks' in checkout_details and checkout_details['webhooks'] == True) else 'false'})
         url += f'?{params}'
         return url
 

@@ -34,8 +34,8 @@ checkout_url = env.get_checkout_url({'beacon': TOKEN,
                                      'cancelUrl': 'http://example.com/cancel',
                                      'orderId': 'T800',
                                      'redirectUrl': 'http://example.com/success',
-                                     'source': 'custom',
-                                     'webhooks': 'true'})
+                                     'source': 'smth',
+                                     'webhooks': True})
 print(f'checkoutURL: {checkout_url}')
 
 
