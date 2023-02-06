@@ -1,28 +1,30 @@
 import sys
 sys.path.append("..")
-from tests.constants import *
-import asyncio
 from src.index import *
+import asyncio
+from tests.constants import *
+
 
 
 # Object creation test
 
 env = Safepay({
-    'environment': ENVIRONMENT_SANDBOX,
-    'apiKey': TEST_API_KEY,
+    'environment': ENVIRONMENT_DEVELOPMENT,
+    'apiKey': TEST_DEVELOPMENT_API_KEY,
     'v1Secret': TEST_V1_SECRET_KEY,
     'webhookSecret': TEST_WEBHOOK_SECRET_KEY
 })
 
-print(f'environment: {env.config}')
+#print(f'environment: {env.config}')
 
 
 # Payment test
 
-payment_response = asyncio.run(env.set_payment_details({'amount': 10000,
-                                                        'currency': 'PKR'}))
+payment_response = env.set_payment_details({'amount': 10000,
+                                                'currency': 'PKR'})
 
-print(f'paymentResponse: {payment_response}')
+
+#print(f'paymentResponse: {payment_response}')
 
 # token = (payment_response['data'])['token']
 
@@ -36,7 +38,7 @@ checkout_url = env.get_checkout_url({'beacon': TOKEN,
                                      'redirectUrl': 'http://example.com/success',
                                      'source': 'smth',
                                      'webhooks': True})
-print(f'checkoutURL: {checkout_url}')
+#print(f'checkoutURL: {checkout_url}')
 
 
 # Verification test for signatures
@@ -44,7 +46,7 @@ print(f'checkoutURL: {checkout_url}')
 verification_response = env.is_signature_valid({'sig': TEST_SIGNATURE,
                                                 'tracker': TOKEN})
 
-print(f'signature verification response: {verification_response}')
+#print(f'signature verification response: {verification_response}')
 
 # Verification test for webhooks
 
@@ -52,7 +54,7 @@ wh_verification_response = env.is_webhook_valid({'x-sfpy-signature': TEST_WEBHOO
                                                  },
                                                 {'data': TEST_WEBHOOK_DATA})
 
-print(f'webhook verification response: {wh_verification_response}')
+#print(f'webhook verification response: {wh_verification_response}')
 
 
 # testing our python server

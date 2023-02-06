@@ -3,6 +3,7 @@ from src.utils.validation import *
 from src.resources.checkout import *
 from src.resources.payments import *
 from src.resources.verify import *
+import asyncio
 
 
 class Safepay:
@@ -15,9 +16,19 @@ class Safepay:
         validate_checkout_parameters(checkout_details)
         return checkout.create_checkout(checkout_details)
 
-    async def set_payment_details(self, payment_details):
-        payment = Payments(self.config)
-        return await payment.create_payment(payment_details)
+    # async def set_payment_details(self, payment_details):
+    #     payment = Payments(self.config)
+    #     return await payment.create_payment(payment_details)
+
+    def set_payment_details(self, payment_details):
+
+        async def paymentFucntion(payment_details):
+            payment = Payments(self.config)
+            value = await payment.create_payment(payment_details)
+            return value
+
+        payment_value = asyncio.run(paymentFucntion(payment_details))
+        return payment_value
 
     def is_signature_valid(self, signature_body):
         verify = Verify(self.config)

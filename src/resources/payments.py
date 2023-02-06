@@ -1,4 +1,5 @@
 from src.utils.builder import *
+from src.utils.validation import *
 import requests
 import json
 
@@ -8,6 +9,7 @@ class Payments:
         self.config = config
 
     async def create_payment(self, payment_details):
+        validate_payment_details(payment_details)
         base_url = build_api_url(self.config['environment'])
         url = '/order/v1/init'
         data = {

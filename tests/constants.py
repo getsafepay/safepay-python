@@ -5,7 +5,8 @@ from src.index import *
 ENVIRONMENT_SANDBOX = 'sandbox'
 ENVIRONMENT_PRODUCTION = 'production'
 ENVIRONMENT_DEVELOPMENT = 'development'
-TEST_API_KEY = 'sec_9286c6a3-a159-492d-9f72-dbe424517fb5'
+TEST_SANDBOX_API_KEY = 'sec_9286c6a3-a159-492d-9f72-dbe424517fb5'
+TEST_DEVELOPMENT_API_KEY = 'sec_f99c1f23-c1d8-4b8e-a74a-5c0e01e1a106'
 TEST_V1_SECRET_KEY = 'd928d9b1d9e487957c6658be637621bbb104d64b6b436e86714c2ff3712bd825'
 TEST_WEBHOOK_SECRET_KEY = 'be0001c975bbfd4f78fa3af9e8a3aeae14aab420c859f2255e12f532028a38f5'
 TOKEN = 'track_9511f95d-2c77-4fc7-9474-0dcca462f09a'
@@ -35,21 +36,21 @@ TEST_WEBHOOK_DATA = {'client_id': 'sec_9286c6a3-a159-492d-9f72-dbe424517fb5',
 
 envSandbox = Safepay({
     'environment': ENVIRONMENT_SANDBOX,
-    'apiKey': TEST_API_KEY,
+    'apiKey': TEST_SANDBOX_API_KEY,
     'v1Secret': TEST_V1_SECRET_KEY,
     'webhookSecret': TEST_WEBHOOK_SECRET_KEY
 })
 
 envDevlopment = Safepay({
     'environment': ENVIRONMENT_DEVELOPMENT,
-    'apiKey': TEST_API_KEY,
+    'apiKey': TEST_DEVELOPMENT_API_KEY,
     'v1Secret': TEST_V1_SECRET_KEY,
     'webhookSecret': TEST_WEBHOOK_SECRET_KEY
 })
 
 envProduction = Safepay({
     'environment': ENVIRONMENT_PRODUCTION,
-    'apiKey': TEST_API_KEY,
+    'apiKey': TEST_SANDBOX_API_KEY,
     'v1Secret': TEST_V1_SECRET_KEY,
     'webhookSecret': TEST_WEBHOOK_SECRET_KEY
 })
