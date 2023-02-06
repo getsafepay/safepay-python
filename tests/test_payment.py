@@ -40,13 +40,11 @@ class TestPaymentAPI(unittest.TestCase):
     def test_sandbox_payment(self):
         expectedResponse = {'errors': [], 'message': 'success'}
         actualResponse = envSandbox.set_payment_details({'amount': 10000, 'currency': 'PKR'})
-        print(actualResponse['status'])
         self.assertEqual(actualResponse['status'], expectedResponse)
 
     def test_development_payment(self):
         expectedResponse = {'errors': [], 'message': 'success'}
-        actualResponse = devSandbox.set_payment_details({'amount': 10000, 'currency': 'PKR'})
-        print(actualResponse['status'])
+        actualResponse = envDevlopment.set_payment_details({'amount': 10000, 'currency': 'PKR'})
         self.assertEqual(actualResponse['status'], expectedResponse)
 
 

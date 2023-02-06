@@ -15,6 +15,13 @@ env = Safepay({
     'webhookSecret': TEST_WEBHOOK_SECRET_KEY
 })
 
+env2 = Safepay({
+    'environment': ENVIRONMENT_SANDBOX,
+    'apiKey': TEST_SANDBOX_API_KEY,
+    'v1Secret': TEST_V1_SECRET_KEY,
+    'webhookSecret': TEST_WEBHOOK_SECRET_KEY
+})
+
 #print(f'environment: {env.config}')
 
 
@@ -36,9 +43,10 @@ checkout_url = env.get_checkout_url({'beacon': TOKEN,
                                      'cancelUrl': 'http://example.com/cancel',
                                      'orderId': 'T800',
                                      'redirectUrl': 'http://example.com/success',
-                                     'source': 'smth',
+                                     'source': 'custom',
                                      'webhooks': True})
-#print(f'checkoutURL: {checkout_url}')
+
+print(f'checkoutURL: {checkout_url}')
 
 
 # Verification test for signatures
