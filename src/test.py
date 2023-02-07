@@ -22,7 +22,8 @@ env2 = Safepay({
     'webhookSecret': TEST_WEBHOOK_SECRET_KEY
 })
 
-#print(f'environment: {env.config}')
+# print(f'environment: {env.config}')
+# print(f'environment: {env2.config}')
 
 
 # Payment test
@@ -46,7 +47,7 @@ checkout_url = env.get_checkout_url({'beacon': TOKEN,
                                      'source': 'custom',
                                      'webhooks': True})
 
-print(f'checkoutURL: {checkout_url}')
+# print(f'checkoutURL: {checkout_url}')
 
 
 # Verification test for signatures

@@ -50,9 +50,6 @@ class TestCheckoutUrl(unittest.TestCase):
                                                     'source': 'custom',
                                                     'webhooks': True})
 
-        print(expectedValue)
-        print(actualValue)
-
         self.assertEqual(actualValue, expectedValue)
 
 
@@ -64,9 +61,6 @@ class TestCheckoutUrl(unittest.TestCase):
                                                     'redirectUrl': 'http://example.com/success',
                                                     'source': 'custom',
                                                     'webhooks': True})
-
-        print(expectedValue)
-        print(actualValue)
 
         self.assertEqual(actualValue, expectedValue)
 

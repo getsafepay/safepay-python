@@ -3,10 +3,10 @@ def validate_options(options):
     try:
         options['environment']
     except:
-        raise Exception('Environment is missing')
+        raise Exception("Environment is missing")
 
     if validate_environment(options['environment']) == False:
-        raise Exception('Environment is invalid')
+        raise Exception("Environment is invalid")
 
     try:
         options['apiKey']

@@ -1,9 +1,10 @@
+import sys
+sys.path.append("..")
 import asyncio
 from constants import *
 from src.index import *
 import unittest
-import sys
-sys.path.append("..")
+
 
 
 class TestPaymentAPI(unittest.TestCase):
