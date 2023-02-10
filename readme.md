@@ -98,9 +98,9 @@ signature_verification = safepay.is_signature_valid({'sig': 'abcd',
 | `request` | `object` | The `req` object from your server | Yes      |
 
 ```python
-webhook_verification = \
-    safepay.is_webhook_valid({'x-sfpy-signature': 'abcd'},
-                             {'data': data})
+webhook_verification = safepay.is_webhook_valid({'x-sfpy-signature': 'abcd'},
+        {'data': data})
+
 
 # mark the invoice as paid if valid
 # show an error if invalid
