@@ -17,12 +17,15 @@ Import and create a Safepay client by passing your config;
 ```python
 from "python-sdk" import Safepay;
 
-safepay = Safepay({
-    'environment': 'sandbox',
-    'apiKey': 'sec_asd12-2342s-1231s',
-    'v1Secret': 'bar',
-    'webhookSecret': 'foo',
-    })
+safepay = Safepay(
+    {
+        "environment": "sandbox",
+        "apiKey": "sec_asd12-2342s-1231s",
+        "v1Secret": "bar",
+        "webhookSecret": "foo",
+    }
+)
+
 ```
 
 You can now create payments and checkout links.
@@ -37,10 +40,10 @@ You can now create payments and checkout links.
 | `currency` | `PKR`, `USD` | Yes      |
 
 ```python
-payment_response = safepay.set_payment_details({'amount': 10000,
-        'currency': 'PKR'})
+payment_response = safepay.set_payment_details({"amount": 10000, "currency": "PKR"})
 
-token = payment_response['data']['token']
+token = payment_response["data"]["token"]
+
 
 
 # Pass `token` to create checkout link
@@ -60,14 +63,16 @@ token = payment_response['data']['token']
 | `webhooks`    | `boolean` | Optional, defaults to `false`                 | No       |
 
 ```python
-checkout_url = safepay.get_checkout_url({
-    'beacon': token,
-    'cancelUrl': 'http://example.com/cancel',
-    'orderId': 'T800',
-    'redirectUrl': 'http://example.com/success',
-    'source': 'custom',
-    'webhooks': True,
-    })
+checkout_url = safepay.get_checkout_url(
+    {
+        "beacon": token,
+        "cancelUrl": "http://example.com/cancel",
+        "orderId": "T800",
+        "redirectUrl": "http://example.com/success",
+        "source": "custom",
+        "webhooks": True,
+    }
+)
 
 
 # set webhooks = True if want to subscribe to webhooks
@@ -83,8 +88,7 @@ checkout_url = safepay.get_checkout_url({
 | `request` | `object` | The `req` object from your server | Yes      |
 
 ```python
-signature_verification = safepay.is_signature_valid({'sig': 'abcd',
-        'tracker': token})
+signature_verification = safepay.is_signature_valid({"sig": "abcd", "tracker": token})
 
 
 # mark the invoice as paid if valid
@@ -98,8 +102,10 @@ signature_verification = safepay.is_signature_valid({'sig': 'abcd',
 | `request` | `object` | The `req` object from your server | Yes      |
 
 ```python
-webhook_verification = safepay.is_webhook_valid({'x-sfpy-signature': 'abcd'},
-        {'data': data})
+webhook_verification = safepay.is_webhook_valid(
+    {"x-sfpy-signature": "abcd"}, {"data": data}
+)
+
 
 
 # mark the invoice as paid if valid
