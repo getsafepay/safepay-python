@@ -17,7 +17,7 @@ Import and create a Safepay client by passing your config;
 ```python
 from "python-sdk" import Safepay;
 
-safepay = new Safepay({
+safepay =  Safepay({
   'environment': 'sandbox',
   'apiKey': 'sec_asd12-2342s-1231s',
   'v1Secret': 'bar',
@@ -52,7 +52,7 @@ token = (payment_response['data'])['token']
 | Parameter     | Type      | Description                                   | Required |
 | ------------- | --------- | --------------------------------------------- | -------- |
 | `token`       | `string`  | Token from `safepay.payments.create`          | Yes      |
-| `orderId`     | `string`  | Your internal invoice / order id              | Yes      |
+| `orderId`     | `string`  | Your internal invoice / order id              | No       |
 | `cancelUrl`   | `string`  | Url to redirect to if user cancels the flow   | Yes      |
 | `redirectUrl` | `string`  | Url to redirect to if user completes the flow | Yes      |
 | `source`      | `string`  | Optional, defaults to `custom`                | No       |
@@ -64,8 +64,9 @@ checkout_url = safepay.get_checkout_url({   'beacon': token,
                                             'orderId': 'T800',
                                             'redirectUrl': 'http://example.com/success',
                                             'source': 'custom',
-                                            'webhooks': 'true'})
+                                            'webhooks': True})
 
+# set webhooks = True if want to subscribe to webhooks
 # redirect user to `url`
 ```
 

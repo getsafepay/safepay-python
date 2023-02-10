@@ -66,13 +66,4 @@ wh_verification_response = env.is_webhook_valid({'x-sfpy-signature': TEST_WEBHOO
 #print(f'webhook verification response: {wh_verification_response}')
 
 
-# testing our python server
 
-# resp = requests.get(url="http://127.0.0.1:8000/my-first-api?name=Fatima")
-# print(resp.text)
-
-# webhook = requests.post(url="http://127.0.0.1:8000/webhook",
-#                         json={'name': 'fatima', 'age': 23}
-#                         )
-
-# print(webhook.json())

@@ -36,7 +36,6 @@ def validate_environment(env):
 
 
 def validate_checkout_parameters(params):
-    # print(f'params: {params}')
 
     try:
         params['beacon']
@@ -57,7 +56,6 @@ def validate_checkout_parameters(params):
 
 
 def validate_payment_details(payment_details):
-    # print(f'payment details: {payment_details}')
 
     try:
         payment_details['amount']

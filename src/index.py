@@ -16,10 +16,6 @@ class Safepay:
         validate_checkout_parameters(checkout_details)
         return checkout.create_checkout(checkout_details)
 
-    # async def set_payment_details(self, payment_details):
-    #     payment = Payments(self.config)
-    #     return await payment.create_payment(payment_details)
-
     def set_payment_details(self, payment_details):
 
         async def paymentFucntion(payment_details):
