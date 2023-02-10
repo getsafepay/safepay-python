@@ -37,8 +37,8 @@ You can now create payments and checkout links.
 | `currency` | `PKR`, `USD` | Yes      |
 
 ```python
-payment_response = asyncio.run(safepay.set_payment_details({'amount': 10000,
-                                                        'currency': 'PKR'}))
+payment_response = asyncio.run(safepay.set_payment_details({  'amount': 10000,
+                                                              'currency': 'PKR'}))
 
 token = (payment_response['data'])['token']
 
@@ -93,8 +93,7 @@ signature_verification = safepay.is_signature_valid({   'sig': 'abcd',
 | `request` | `object` | The `req` object from your server | Yes      |
 
 ```python
-webhook_verification = safepay.is_webhook_valid({'x-sfpy-signature': 'abcd'
-                                                 },
+webhook_verification = safepay.is_webhook_valid({'x-sfpy-signature': 'abcd'},
                                                 {'data': data})
 
 # mark the invoice as paid if valid
