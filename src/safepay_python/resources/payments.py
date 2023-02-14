@@ -1,5 +1,5 @@
-from src.utils.builder import *
-from src.utils.validation import *
+from safepay_python.utils.builder import *
+from safepay_python.utils.validation import *
 import requests
 import json
 

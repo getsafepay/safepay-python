@@ -2,7 +2,7 @@ import sys
 sys.path.append("..")
 import asyncio
 from constants import *
-from src.index import *
+from safepay_python.safepay import *
 import unittest
 
 

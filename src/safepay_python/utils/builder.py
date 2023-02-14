@@ -1,4 +1,4 @@
-from src.utils.constants import *
+from safepay_python.utils.constants import *
 
 
 def build_checkout_url(env):

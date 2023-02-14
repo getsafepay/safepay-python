@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "safepay_python"
+version = "0.0.3"
+authors = [
+  { name="Fatima Aurangzeb", email="faurangzeb@getsafepay.com" },
+]
+description = "Safepay's python SDK for checkout integration"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "requests==2.28.2",
+    "urllib3==1.26.14",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/getsafepay/safepay-python"
+"Bug Tracker" = "https://github.com/getsafepay/safepay-python/issues"

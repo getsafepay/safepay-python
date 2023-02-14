@@ -1,6 +1,6 @@
 import sys
 sys.path.append("..")
-from src.index import *
+from safepay_python.safepay import *
 
 ENVIRONMENT_SANDBOX = 'sandbox'
 ENVIRONMENT_PRODUCTION = 'production'

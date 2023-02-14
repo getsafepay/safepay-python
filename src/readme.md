@@ -7,7 +7,7 @@ Official python library for [Safepay API](https://getsafepay.com).
 ### With Pip
 
 ```
-pip install @sfpy/python-sdk
+pip install safepay-python
 ```
 
 ## Usage
@@ -15,9 +15,9 @@ pip install @sfpy/python-sdk
 Import and create a Safepay client by passing your config;
 
 ```python
-from "python-sdk" import Safepay;
+from "python_sdk" import safepay;
 
-safepay = Safepay(
+env = safepay.Safepay(
     {
         "environment": "sandbox",
         "apiKey": "sec_asd12-2342s-1231s",
@@ -40,7 +40,7 @@ You can now create payments and checkout links.
 | `currency` | `PKR`, `USD` | Yes      |
 
 ```python
-payment_response = safepay.set_payment_details({"amount": 10000, "currency": "PKR"})
+payment_response = env.set_payment_details({"amount": 10000, "currency": "PKR"})
 
 token = payment_response["data"]["token"]
 
@@ -55,7 +55,7 @@ token = payment_response["data"]["token"]
 
 | Parameter     | Type      | Description                                   | Required |
 | ------------- | --------- | --------------------------------------------- | -------- |
-| `token`       | `string`  | Token from `safepay.payments.create`          | Yes      |
+| `token`       | `string`  | Token from `env.set_payment_details`          | Yes      |
 | `orderId`     | `string`  | Your internal invoice / order id              | No       |
 | `cancelUrl`   | `string`  | Url to redirect to if user cancels the flow   | Yes      |
 | `redirectUrl` | `string`  | Url to redirect to if user completes the flow | Yes      |
@@ -63,7 +63,7 @@ token = payment_response["data"]["token"]
 | `webhooks`    | `boolean` | Optional, defaults to `false`                 | No       |
 
 ```python
-checkout_url = safepay.get_checkout_url(
+checkout_url = env.get_checkout_url(
     {
         "beacon": token,
         "cancelUrl": "http://example.com/cancel",
@@ -88,7 +88,7 @@ checkout_url = safepay.get_checkout_url(
 | `request` | `object` | The `req` object from your server | Yes      |
 
 ```python
-signature_verification = safepay.is_signature_valid({"sig": "abcd", "tracker": token})
+signature_verification = env.is_signature_valid({"sig": "abcd", "tracker": token})
 
 
 # mark the invoice as paid if valid
@@ -102,7 +102,7 @@ signature_verification = safepay.is_signature_valid({"sig": "abcd", "tracker": t
 | `request` | `object` | The `req` object from your server | Yes      |
 
 ```python
-webhook_verification = safepay.is_webhook_valid(
+webhook_verification = env.is_webhook_valid(
     {"x-sfpy-signature": "abcd"}, {"data": data}
 )
 

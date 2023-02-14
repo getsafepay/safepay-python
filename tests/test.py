@@ -1,6 +1,6 @@
 import sys
 sys.path.append("..")
-from src.index import *
+from safepay_python.safepay import *
 import asyncio
 from tests.constants import *
 
@@ -22,8 +22,8 @@ env2 = Safepay({
     'webhookSecret': TEST_WEBHOOK_SECRET_KEY
 })
 
-# print(f'environment: {env.config}')
-# print(f'environment: {env2.config}')
+print(f'environment: {env.config}')
+print(f'environment: {env2.config}')
 
 
 # Payment test
@@ -32,11 +32,11 @@ payment_response = env.set_payment_details({'amount': 10000,
                                                 'currency': 'PKR'})
 
 
-#print(f'paymentResponse: {payment_response}')
+print(f'paymentResponse: {payment_response}')
 
-# token = (payment_response['data'])['token']
+token = (payment_response['data'])['token']
 
-# print(f'token: {token}')
+print(f'token: {token}')
 
 # Checkout url test
 
@@ -47,7 +47,7 @@ checkout_url = env.get_checkout_url({'beacon': TOKEN,
                                      'source': 'custom',
                                      'webhooks': True})
 
-# print(f'checkoutURL: {checkout_url}')
+print(f'checkoutURL: {checkout_url}')
 
 
 # Verification test for signatures
@@ -55,7 +55,7 @@ checkout_url = env.get_checkout_url({'beacon': TOKEN,
 verification_response = env.is_signature_valid({'sig': TEST_SIGNATURE,
                                                 'tracker': TOKEN})
 
-#print(f'signature verification response: {verification_response}')
+print(f'signature verification response: {verification_response}')
 
 # Verification test for webhooks
 
@@ -63,7 +63,7 @@ wh_verification_response = env.is_webhook_valid({'x-sfpy-signature': TEST_WEBHOO
                                                  },
                                                 {'data': TEST_WEBHOOK_DATA})
 
-#print(f'webhook verification response: {wh_verification_response}')
+print(f'webhook verification response: {wh_verification_response}')
 
 
 

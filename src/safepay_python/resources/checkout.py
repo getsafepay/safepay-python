@@ -1,4 +1,4 @@
-from src.utils.builder import *
+from safepay_python.utils.builder import *
 import urllib.parse
 
 class Checkout:

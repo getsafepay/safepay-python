@@ -1,7 +1,7 @@
 import unittest
 import sys
 sys.path.append("..")
-from src.index import *
+from safepay_python.safepay import *
 from constants import *
 
 class TestEnvironment(unittest.TestCase):

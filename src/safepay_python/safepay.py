@@ -1,8 +1,8 @@
-from src.utils.builder import *
-from src.utils.validation import *
-from src.resources.checkout import *
-from src.resources.payments import *
-from src.resources.verify import *
+from safepay_python.utils.builder import *
+from safepay_python.utils.validation import *
+from safepay_python.resources.checkout import *
+from safepay_python.resources.payments import *
+from safepay_python.resources.verify import *
 import asyncio
 
 
