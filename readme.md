@@ -15,9 +15,9 @@ pip install safepay-python
 Import and create a Safepay client by passing your config;
 
 ```python
-from "python_sdk" import safepay;
+from safepay_python.safepay import *
 
-env = safepay.Safepay(
+env = Safepay(
     {
         "environment": "sandbox",
         "apiKey": "sec_asd12-2342s-1231s",
@@ -42,7 +42,7 @@ You can now create payments and checkout links.
 ```python
 payment_response = env.set_payment_details({"amount": 10000, "currency": "PKR"})
 
-token = payment_response["data"]["token"]
+token = (payment_response['data'])['token']
 
 
 
@@ -83,9 +83,10 @@ checkout_url = env.get_checkout_url(
 
 #### Signature
 
-| Parameter | Type     | Description                       | Required |
-| --------- | -------- | --------------------------------- | -------- |
-| `request` | `object` | The `req` object from your server | Yes      |
+| Parameter | Type     | Description                             | Required |
+| --------- | -------- | --------------------------------------- | -------- |
+| `sig`     | `string` | The `signature` string from your server | Yes      |
+| `tracker` | `string` | The `tracker` string from your server   | Yes      |
 
 ```python
 signature_verification = env.is_signature_valid({"sig": "abcd", "tracker": token})
@@ -97,9 +98,10 @@ signature_verification = env.is_signature_valid({"sig": "abcd", "tracker": token
 
 #### Webhook
 
-| Parameter | Type     | Description                       | Required |
-| --------- | -------- | --------------------------------- | -------- |
-| `request` | `object` | The `req` object from your server | Yes      |
+| Parameter          | Type     | Description                             | Required |
+| ------------------ | -------- | --------------------------------------- | -------- |
+| `x-sfpy-signature` | `string` | The `signature` string from your server | Yes      |
+| `data`             | `object` | The `data` object from your server      | Yes      |
 
 ```python
 webhook_verification = env.is_webhook_valid(
