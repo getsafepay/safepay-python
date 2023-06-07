@@ -4,13 +4,13 @@ build-backend = "hatchling.build"
 
 [project]
 name = "safepay_python"
-version = "0.0.3"
+version = "0.0.4"
 authors = [
   { name="Fatima Aurangzeb", email="faurangzeb@getsafepay.com" },
 ]
 description = "Safepay's python SDK for checkout integration"
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.6"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
@@ -20,6 +20,7 @@ classifiers = [
 dependencies = [
     "requests==2.28.2",
     "urllib3==1.26.14",
+    "six==1.16.0",
 ]
 
 [project.urls]
