@@ -1,2 +1,3 @@
 .DS_Store
 src/dist/
+tests/__pycache__/
