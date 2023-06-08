@@ -28,7 +28,7 @@ print(f'environment: {env2.config}')
 
 # Payment test
 
-payment_response = env.set_payment_details({'amount': 10000,
+payment_response = env2.set_payment_details({'amount': 10000,
                                                 'currency': 'PKR'})
 
 
@@ -40,7 +40,7 @@ print(f'token: {token}')
 
 # Checkout url test
 
-checkout_url = env.get_checkout_url({'beacon': TOKEN,
+checkout_url = env2.get_checkout_url({'beacon': TOKEN,
                                      'cancelUrl': 'http://example.com/cancel',
                                      'orderId': 'T800',
                                      'redirectUrl': 'http://example.com/success',
@@ -52,14 +52,14 @@ print(f'checkoutURL: {checkout_url}')
 
 # Verification test for signatures
 
-verification_response = env.is_signature_valid({'sig': TEST_SIGNATURE,
+verification_response = env2.is_signature_valid({'sig': TEST_SIGNATURE,
                                                 'tracker': TOKEN})
 
 print(f'signature verification response: {verification_response}')
 
 # Verification test for webhooks
 
-wh_verification_response = env.is_webhook_valid({'x-sfpy-signature': TEST_WEBHOOK_SIGNATURE
+wh_verification_response = env2.is_webhook_valid({'x-sfpy-signature': TEST_WEBHOOK_SIGNATURE
                                                  },
                                                 {'data': TEST_WEBHOOK_DATA})
 

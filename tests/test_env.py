@@ -82,8 +82,7 @@ class TestEnvironment(unittest.TestCase):
                                     'v1Secret': TEST_V1_SECRET_KEY,
                                     'webhookSecret': TEST_WEBHOOK_SECRET_KEY
                                 }).config
-
-        expectedResponse = {'environment': 'development', 'apiKey': 'sec_f99c1f23-c1d8-4b8e-a74a-5c0e01e1a106', 'v1Secret': 'd928d9b1d9e487957c6658be637621bbb104d64b6b436e86714c2ff3712bd825', 'webhookSecret': 'be0001c975bbfd4f78fa3af9e8a3aeae14aab420c859f2255e12f532028a38f5'}
+        expectedResponse = {'environment': 'development', 'apiKey': 'sec_5fe1bafa-23d9-4dd6-b9f5-3e122ea9f240', 'v1Secret': 'd928d9b1d9e487957c6658be637621bbb104d64b6b436e86714c2ff3712bd825', 'webhookSecret': 'be0001c975bbfd4f78fa3af9e8a3aeae14aab420c859f2255e12f532028a38f5'}
         self.assertEqual(actualResponse, expectedResponse)
 
 
