@@ -22,8 +22,10 @@ class Safepay:
             payment = Payments(self.config)
             value = await payment.create_payment(payment_details)
             return value
-
-        payment_value = asyncio.run(paymentFucntion(payment_details))
+        
+        loop = asyncio.get_event_loop()
+        payment_value = loop.run_until_complete(paymentFucntion(payment_details))
+        # payment_value = asyncio.run(paymentFucntion(payment_details))
         return payment_value
 
     def is_signature_valid(self, signature_body):
