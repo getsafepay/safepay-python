@@ -8,12 +8,12 @@ from tests.constants import *
 
 # Object creation test
 
-env = Safepay({
-    'environment': ENVIRONMENT_DEVELOPMENT,
-    'apiKey': TEST_DEVELOPMENT_API_KEY,
-    'v1Secret': TEST_V1_SECRET_KEY,
-    'webhookSecret': TEST_WEBHOOK_SECRET_KEY
-})
+# env = Safepay({
+#     'environment': ENVIRONMENT_DEVELOPMENT,
+#     'apiKey': TEST_DEVELOPMENT_API_KEY,
+#     'v1Secret': TEST_V1_SECRET_KEY,
+#     'webhookSecret': TEST_WEBHOOK_SECRET_KEY
+# })
 
 env2 = Safepay({
     'environment': ENVIRONMENT_SANDBOX,
@@ -22,7 +22,7 @@ env2 = Safepay({
     'webhookSecret': TEST_WEBHOOK_SECRET_KEY
 })
 
-print(f'environment: {env.config}')
+# print(f'environment: {env.config}')
 print(f'environment: {env2.config}')
 
 
