@@ -1,0 +1,85 @@
+# Publishes safepay-python to PyPI when a GitHub Release is published.
+#
+# Uses PyPI Trusted Publishing (OIDC) — no API token is stored anywhere.
+#
+# ONE-TIME SETUP (required, or the publish step fails):
+#   1. On PyPI: project "safepay-python" -> Manage -> Publishing ->
+#      add a trusted publisher (GitHub Actions) with EXACTLY:
+#        Owner:        getsafepay
+#        Repository:   safepay-python
+#        Workflow:     publish.yml        (this file's name)
+#        Environment:  pypi
+#   2. In this repo: Settings -> Environments -> create "pypi"
+#      (optionally add required reviewers as a release gate).
+#   3. This file must live on the DEFAULT branch (main). Release events
+#      run the workflow copy from the default branch.
+#
+# TO CUT A RELEASE:
+#   - Bump `version` in pyproject.toml AND __version__ in
+#     safepay_python/__init__.py (PyPI refuses to re-upload a version).
+#   - Commit to main, then create a GitHub Release whose tag is that
+#     version (e.g. "0.1.0" or "v0.1.0"). Publishing it triggers this.
+
+name: Publish to PyPI
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Fail if the release tag does not match the package version
+        run: |
+          pkg=$(python -c "import tomllib, pathlib; print(tomllib.loads(pathlib.Path('pyproject.toml').read_text())['project']['version'])")
+          tag="${{ github.event.release.tag_name }}"
+          tag="${tag#v}"
+          if [ "$pkg" != "$tag" ]; then
+            echo "::error::release tag '$tag' != pyproject version '$pkg' — bump the version before releasing"
+            exit 1
+          fi
+
+      - name: Build sdist and wheel
+        run: |
+          python -m pip install --upgrade build
+          python -m build
+
+      - name: Upload distributions
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-dists
+          path: dist/
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/safepay-python
+    permissions:
+      id-token: write   # mandatory for Trusted Publishing (OIDC)
+    steps:
+      - name: Retrieve distributions
+        uses: actions/download-artifact@v4
+        with:
+          name: release-dists
+          path: dist/
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/
+
+# Supply-chain note: for a payments org, consider pinning each `uses:` to a
+# full commit SHA (not a moving tag like @v4 / @release/v1) and letting
+# Dependabot bump them.
