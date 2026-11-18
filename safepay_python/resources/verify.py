@@ -1,7 +1,7 @@
 import json
 from hashlib import sha256, sha512
 import hmac
-from safepay_python.utils.secure_compare import *
+from safepay_python.utils.secure_compare import secure_compare
 
 
 class Verify:

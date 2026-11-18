@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "safepay_python"
+version = "0.1.0"
+authors = [
+  { name = "Safepay", email = "support@getsafepay.com" },
+  { name = "Fatima Aurangzeb", email = "faurangzeb@getsafepay.com" },
+]
+description = "Official Python library for Safepay Express Checkout"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Office/Business :: Financial",
+]
+dependencies = [
+    "requests>=2.25,<3",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/getsafepay/safepay-python"
+"Documentation" = "https://docs.getsafepay.com/build-your-integration/express-checkout"
+"Bug Tracker" = "https://github.com/getsafepay/safepay-python/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["safepay_python"]
+
+[tool.hatch.build.targets.sdist]
+include = ["safepay_python", "tests", "README.md", "CHANGELOG.md", "LICENSE"]

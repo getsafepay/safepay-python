@@ -2,7 +2,7 @@ def validate_options(options):
 
     try:
         options['environment']
-    except:
+    except (KeyError, TypeError):
         raise Exception("Environment is missing")
 
     if validate_environment(options['environment']) == False:
@@ -10,17 +10,17 @@ def validate_options(options):
 
     try:
         options['apiKey']
-    except:
+    except (KeyError, TypeError):
         raise Exception(f"API key is missing for {options['environment']}")
 
     try:
         options['v1Secret']
-    except:
+    except (KeyError, TypeError):
         raise Exception(f"v1 secret is missing for {options['environment']}")
 
     try:
         options['webhookSecret']
-    except:
+    except (KeyError, TypeError):
         raise Exception(
             f"Webhook secret is missing for {options['environment']}")
 
@@ -39,17 +39,17 @@ def validate_checkout_parameters(params):
 
     try:
         params['beacon']
-    except:
+    except (KeyError, TypeError):
         raise Exception(f"Token is missing")
 
     try:
         params['cancelUrl']
-    except:
+    except (KeyError, TypeError):
         raise Exception(f"Cancel url is missing")
 
     try:
         params['redirectUrl']
-    except:
+    except (KeyError, TypeError):
         raise Exception(f"Redirect url is missing")
 
     return True
@@ -59,7 +59,7 @@ def validate_payment_details(payment_details):
 
     try:
         payment_details['amount']
-    except:
+    except (KeyError, TypeError):
         raise Exception(f"Amount is missing")
 
     if payment_details['amount'] < 1:
@@ -67,7 +67,7 @@ def validate_payment_details(payment_details):
 
     try:
         payment_details['currency']
-    except:
+    except (KeyError, TypeError):
         raise Exception(f"Currency is missing")
 
     if validate_currency(payment_details['currency']) == False:
