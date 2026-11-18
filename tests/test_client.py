@@ -255,5 +255,62 @@ class LegacyTests(unittest.TestCase):
         self.assertEqual(out["data"]["token"], "track_x")
 
 
+class ReviewFixTests(unittest.TestCase):
+    def test_subpackages_are_regular_packages(self):
+        import importlib
+        for name in ("safepay_python.resources", "safepay_python.utils"):
+            mod = importlib.import_module(name)
+            self.assertIsNotNone(getattr(mod, "__file__", None), name + " has no __init__.py")
+
+    def test_extra_cannot_override_named_fields(self):
+        client, session = make_client()
+        session.request.return_value = fake_response(201, {"data": {"tracker": {"token": "t"}}})
+        client.create_payment_session(100, "PKR", merchant_api_key="sec_evil", order_ref="R1")
+        payload = session.request.call_args[1]["json"]
+        self.assertEqual(payload["merchant_api_key"], "sec_key")
+        self.assertEqual(payload["amount"], 100)
+        self.assertEqual(payload["order_ref"], "R1")
+
+    def test_auth_token_must_be_a_string(self):
+        client, session = make_client()
+        for bad in ({"token": "x"}, "", None, ["x"]):
+            session.request.return_value = fake_response(200, {"data": bad})
+            with self.assertRaises(APIError):
+                client.create_auth_token()
+
+    def test_bytes_signature(self):
+        client, _ = make_client()
+        raw = b'{"a":1}'
+        sig = hmac.new(b"whsec", raw, hashlib.sha512).hexdigest()
+        self.assertTrue(client.verify_webhook(raw, sig.encode()))
+        self.assertFalse(client.verify_webhook(raw, b"\xff\xfe"))
+        self.assertFalse(client.verify_webhook(raw, 12345))
+        self.assertFalse(client.verify_webhook(raw, None))
+
+    def test_legacy_validation_messages_unchanged(self):
+        from safepay_python.utils.validation import (
+            validate_checkout_parameters, validate_options, validate_payment_details)
+        cases = [
+            (validate_options, {}, "Environment is missing"),
+            (validate_options, {"environment": "sandbox"}, "API key is missing for sandbox"),
+            (validate_options, {"environment": "sandbox", "apiKey": "k"},
+             "v1 secret is missing for sandbox"),
+            (validate_options, {"environment": "sandbox", "apiKey": "k", "v1Secret": "s"},
+             "Webhook secret is missing for sandbox"),
+            (validate_checkout_parameters, {}, "Token is missing"),
+            (validate_checkout_parameters, {"beacon": "t"}, "Cancel url is missing"),
+            (validate_checkout_parameters, {"beacon": "t", "cancelUrl": "c"},
+             "Redirect url is missing"),
+            (validate_payment_details, {}, "Amount is missing"),
+            (validate_payment_details, {"amount": 0}, "Amount should be greater than 0"),
+            (validate_payment_details, {"amount": 1}, "Currency is missing"),
+            (validate_payment_details, {"amount": 1, "currency": "JPY"}, "Currency not supported"),
+        ]
+        for fn, arg, msg in cases:
+            with self.assertRaises(Exception) as ctx:
+                fn(arg)
+            self.assertEqual(str(ctx.exception), msg)
+
+
 if __name__ == "__main__":
     unittest.main()

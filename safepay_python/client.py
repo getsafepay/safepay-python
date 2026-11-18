@@ -125,27 +125,32 @@ class SafepayClient:
         if not isinstance(amount, int) or isinstance(amount, bool) or amount < 1:
             raise SafepayError("amount must be a positive integer in the lowest denomination")
 
-        payload = {
+        # Apply **extra first so it can never override the fields set below.
+        payload = dict(extra)
+        payload.update({
             "merchant_api_key": self.api_key,
             "intent": intent,
             "mode": mode,
             "currency": currency,
             "amount": amount,
             "include_fees": include_fees,
-        }
+        })
         if entry_mode:
             payload["entry_mode"] = entry_mode
         if customer:
             payload["user"] = customer
         if metadata:
             payload["metadata"] = metadata
-        payload.update(extra)
         return self._request("POST", "/order/payments/v3/", json=payload)
 
     def create_auth_token(self):
         """Create a short-lived (1 hour) authentication token (TBT) with
         ``POST /client/passport/v1/token``. Returns the token string."""
-        return self._request("POST", "/client/passport/v1/token")
+        token = self._request("POST", "/client/passport/v1/token")
+        if not isinstance(token, str) or not token:
+            raise APIError("Unexpected authentication token response from Safepay",
+                           body={"data": token})
+        return token
 
     def get_checkout_url(self, tracker, tbt, redirect_url, cancel_url,
                          source="hosted", order_id=None, customer=None):

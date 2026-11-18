@@ -36,7 +36,12 @@ def verify_signature(payload, signature, secret):
     compact JSON re-encoding of the payload (what Safepay's PHP reference
     implementation signs: ``json_encode($payload, JSON_UNESCAPED_SLASHES)``).
     """
-    if not signature or not secret:
+    if isinstance(signature, (bytes, bytearray)):
+        try:
+            signature = bytes(signature).decode("ascii")
+        except UnicodeDecodeError:
+            return False
+    if not isinstance(signature, str) or not signature or not secret:
         return False
     signature = signature.strip().lower()
 
