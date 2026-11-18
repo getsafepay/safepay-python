@@ -9,7 +9,7 @@ from safepay_python.errors import (
 )
 from safepay_python.webhooks import SIGNATURE_HEADER, construct_event, verify_signature
 
-__version__ = "0.1.0"
+__version__ = "1.0.0"
 
 __all__ = [
     "SafepayClient",

@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "safepay_python"
-version = "0.1.0"
+version = "1.0.0"
 authors = [
   { name = "Safepay", email = "support@getsafepay.com" },
   { name = "Fatima Aurangzeb", email = "faurangzeb@getsafepay.com" },
